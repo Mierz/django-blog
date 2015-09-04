@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                {% if latest_posts %}
+                    {% for post in latest_posts %}
+                    <div class="post-preview">
+                        <a href="/blog/{{ post.id }}/view">
+                            <h2 class="post-title">
+                                {{ post.title }}
+                            </h2>
+                        </a>
+                        <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on {{ post.pub_date }}</p>
+                    </div>
+                    {% endfor %}
+
+                {% else %}
+                    <p>No posts.</p>
+                {% endif %}
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    {% if latest_posts.has_previous %}
+                    <li class="previous">
+                        <a href="?page={{ latest_posts.previous_page_number }}">&larr; previous</a>
+                    </li>
+                    {% endif %}
+                    {% if latest_posts.has_next %}
+                    <li class="next">
+                        <a href="?page={{ latest_posts.next_page_number }}">next &rarr;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+
+{% endblock %}
