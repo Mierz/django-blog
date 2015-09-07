@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import Post, Categorie
+from .models import Post, Categorie, Page
 
 def index(request):
     latest_posts = Post.objects.all()
@@ -26,3 +26,9 @@ def view(request, post_id):
     post = Post.objects.get(pk=post_id)
     context = {'post': post}
     return render(request, 'blog/view.html', context)
+
+def page(request, page_id):
+    page = Page.objects.get(pk=page_id)
+    context = {'page': page}
+    return render(request, 'blog/page.html', context)
+    #return HttpResponse(page_link)
