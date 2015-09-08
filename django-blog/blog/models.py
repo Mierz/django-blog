@@ -9,7 +9,10 @@ class Categorie(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     post = models.TextField()
+    seo_description = models.CharField(max_length=200)
+    seo_keywords = models.CharField(max_length=80)
     pub_date = models.DateField('date published')
+    url = models.CharField(max_length=50)
     category = models.ForeignKey(Categorie)
     def __str__(self):              # __unicode__ on Python 2
         return self.title

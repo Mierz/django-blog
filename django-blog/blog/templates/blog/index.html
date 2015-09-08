@@ -10,12 +10,12 @@
                 {% if latest_posts %}
                     {% for post in latest_posts %}
                     <div class="post-preview">
-                        <a href="/blog/{{ post.id }}/view">
+                        <a href="{% url 'view' post.url %}">
                             <h2 class="post-title">
                                 {{ post.title }}
                             </h2>
                         </a>
-                        <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on {{ post.pub_date }}</p>
+                        <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on {{ post.pub_date }} | <a href="{% url 'category' post.category.id %}">{{ post.category.category }}</a></p>
                     </div>
                     {% endfor %}
 

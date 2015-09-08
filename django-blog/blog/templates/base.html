@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Clean Blog</title>
+    {% block seo %}{% endblock %}
+    <title>{% block title %}Personal Blog{% endblock %}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://ironsummitmedia.github.io/startbootstrap-clean-blog/css/bootstrap.min.css" rel="stylesheet">
@@ -43,17 +41,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="{% url 'index' %}">blog</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/blogl">Home</a>
+                        <a href="{% url 'index' %}">Home</a>
                     </li>
                     <li>
-                        <a href="/blog/1/page/">About</a>
+                        <a href="{% url 'page' 'about' %}">About</a>
                     </li>
                 </ul>
             </div>
@@ -64,12 +62,12 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('http://ironsummitmedia.github.io/startbootstrap-clean-blog/img/home-bg.jpg')">
+    <header class="intro-header" style="background: #cecece;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
+                        <h1>Blog</h1>
                         <hr class="small">
                         <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
                     </div>
@@ -78,7 +76,8 @@
         </div>
     </header>
 
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
 
     <!-- Footer -->
     <footer>
@@ -111,7 +110,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="copyright text-muted">Copyright &copy; {% now "Y" %} <a href="{% url 'index' %}">Personal blog</a></p>
                 </div>
             </div>
         </div>
@@ -119,10 +118,8 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
 

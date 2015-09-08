@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^(?P<post_id>[0-9]+)/view/$', views.view, name='view'),
-    url(r'^(?P<page_id>[0-9]+)/page/$', views.page, name='page')
+    url(r'^post/(?P<post_url>[a-z]+)$', views.view, name='view'),
+    url(r'^page/(?P<page_url>[a-z]+)$', views.page, name='page'),
+    url(r'^category/(?P<category_id>[0-9]+)$', views.category, name='category'),
 ]

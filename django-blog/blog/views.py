@@ -9,7 +9,7 @@ from .models import Post, Categorie, Page
 
 def index(request):
     latest_posts = Post.objects.all()
-    paginator = Paginator(latest_posts, 1)
+    paginator = Paginator(latest_posts, 10)
 
     page = request.GET.get('page')
 
@@ -22,13 +22,16 @@ def index(request):
 
     return render_to_response('blog/index.html', {'latest_posts': posts})
 
-def view(request, post_id):
-    post = Post.objects.get(pk=post_id)
+def view(request, post_url):
+    post = Post.objects.get(url=post_url)
     context = {'post': post}
     return render(request, 'blog/view.html', context)
 
-def page(request, page_id):
-    page = Page.objects.get(pk=page_id)
+def page(request, page_url):
+    page = Page.objects.get(url=page_url)
     context = {'page': page}
     return render(request, 'blog/page.html', context)
     #return HttpResponse(page_link)
+
+def category(request, category_id):
+    return render(request, 'blog/category.html')
